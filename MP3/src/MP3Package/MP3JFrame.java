@@ -28,89 +28,94 @@ public class MP3JFrame extends javax.swing.JFrame {
     int room;
     int choice;
     boolean dontGivePoints;
-    int numberOfRooms= 0;
+    int numberOfRooms = 0;
     String nextRoom;
     String descriptionAreaStr = "";
     String shortDescriptionStr = "";
     ImageIcon roomPicture;
     int nextFile;
-    
-    
+
     Inventory[] gameInventory = new Inventory[8];
     int[] roomArray = new int[24];
     Room adventure = new Room();
     File[] fileArray = new File[24];
     Room occupiedRoom = null;
-    
+
     ArrayList<Room> rooms = new ArrayList<Room>();
     Room currentRoom = null;
 
-    
     /**
      * Creates new form MP3JFrame
      */
     public MP3JFrame() {
         initComponents();
-        
 
         //Intro to game!  Describes who you are and the situation at hand.
         ImageIcon dolleyIcon; //Dolley Madison pictures
         String filename = "/images/Dolley.jpg"; //Filename for the image
-        dolleyIcon = new ImageIcon (getClass().getResource( filename)); //Getting the image
-        String message = "Your name is Dolley Madison. \n \n" + //Intro description to the game
-                            "President James Madison has left the White House \n" +
-                            "to meet with his generals on the battlefield, \n" +
-                            "as British troops have threatened to enter the capitol. \n \n" +
-                            "Before leaving, he asked you to gather important objects \n" +
-                            "and to be prepared to abandon the White House at any moment. \n \n" +
-                            "Currently, the British are coming and you must gather the \n" +
-                            "most important items you can find and drop them off in the right places!";
+        dolleyIcon = new ImageIcon(getClass().getResource(filename)); //Getting the image
+        String message = "Your name is Dolley Madison. \n \n"
+                + //Intro description to the game
+                "President James Madison has left the White House \n"
+                + "to meet with his generals on the battlefield, \n"
+                + "as British troops have threatened to enter the capitol. \n \n"
+                + "Before leaving, he asked you to gather important objects \n"
+                + "and to be prepared to abandon the White House at any moment. \n \n"
+                + "Currently, the British are coming and you must gather the \n"
+                + "most important items you can find and drop them off in the right places!";
         String title = "The British are Coming!"; //Title
         int messageType = JOptionPane.INFORMATION_MESSAGE; //Message Type as information
-        
+
         JOptionPane.showMessageDialog(null, message, title, messageType, dolleyIcon); //Message Dialog introducing the game.
-        
-        
+
         try {
             // open up data file stored in src/data/roomdata.txt
             // remember that the "src" folder is the root for JAR-based file resources
-            InputStreamReader isr = new InputStreamReader(  
-                                        this.getClass().getResourceAsStream("/data/Rooms.txt") );
-            BufferedReader br     = new BufferedReader( isr );
-            
+            InputStreamReader isr = new InputStreamReader(
+                    this.getClass().getResourceAsStream("/data/Rooms.txt"));
+            BufferedReader br = new BufferedReader(isr);
+
             // read in the file - assuming it has correct format for each room of:
             // 1. comment line
             // 2. line of four space-separated integers representing connecting 
             //    rooms to (in order) the north, south, east, and west.
             //    The value -1 is used to indicate no connection in that direction.
             // 3. Line of descriptive text associated with the room.
-            while ( true ) {
+            while (true) {
                 String comment = br.readLine();
-                if ( comment == null ) break;
-                
+                if (comment == null) {
+                    break;
+                }
+
                 String roomConnections = br.readLine();
                 // split will use the passed delimiter to split a string
                 // into multiple strings housed in an array.
-                String[] nsew = roomConnections.split( " " );
+                String[] nsew = roomConnections.split(" ");
+                int points = Integer.parseInt(br.readLine());
+                String imageSRC = br.readLine();
                 String text = br.readLine();
-                Room newRoom = new Room( Integer.parseInt( nsew[0] ),
-                                         Integer.parseInt( nsew[1] ),
-                                         Integer.parseInt( nsew[2] ),
-                                         Integer.parseInt( nsew[3] ),
-                                         text                         );
-                rooms.add( newRoom );
+                String textLong = br.readLine();
+                Room newRoom = new Room(Integer.parseInt(nsew[0]),
+                        Integer.parseInt(nsew[1]),
+                        Integer.parseInt(nsew[2]),
+                        Integer.parseInt(nsew[3]),
+                        Integer.parseInt(nsew[4]),
+                        Integer.parseInt(nsew[5]),
+                        points,
+                        imageSRC,
+                        text,
+                        textLong);
+                rooms.add(newRoom);
             }
             br.close();
+        } catch (IOException e) {
         }
-        catch ( IOException e ) {
-        }
-        
-        currentRoom = rooms.get( 0 );
+
+        currentRoom = rooms.get(0);
         displayRoomInfo();
-        
-        
+
         setLocationRelativeTo(null);
-        
+
 //        for( int k = 0; k < 8; k++)
 //        {
 //            gameInventory[k] = new Inventory(k, false, false);
@@ -120,14 +125,7 @@ public class MP3JFrame extends javax.swing.JFrame {
 //            String roomFileName = "src/data/Room_" + i + ".txt";
 //            fileArray[i] = new File(roomFileName);
 //        }
-        
-        
-           
     }
-    
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -218,57 +216,46 @@ public class MP3JFrame extends javax.swing.JFrame {
     private void commandTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commandTextFieldActionPerformed
         // TODO add your handling code here:
         points = 0;
-        
+
         nextRoom = commandTextField.getText().toLowerCase();
-        descriptionTextArea.append( ">" + nextRoom + "\n" );
+        descriptionTextArea.append(">" + nextRoom + "\n");
         commandTextField.setText("");
 
-        if(nextRoom.equals("quit"))
-        {
+        if (nextRoom.equals("quit")) {
             System.exit(1);
-        }
-        else if (nextRoom.equals("score"))
-        {
+        } else if (nextRoom.equals("score")) {
 //                adventure.setNorth(currentRoom);
 //                adventure.setSouth(currentRoom);
 //                adventure.setEast(currentRoom);
 //                adventure.setWest(currentRoom);
-            descriptionTextArea.append( "Your score is: " + totalPoints + ". \n" );
+            descriptionTextArea.append("Your score is: " + totalPoints + ". \n");
             dontGivePoints = true;
             points = 0;
 
         }
-        
+
         //adventure.assignDirections(nextRoom);
         nextFile = adventure.getNextDirection(nextRoom);
 
-        if (nextFile == -1)
-        {
+        if (nextFile == -1) {
 //            adventure.setNorth(currentRoom);
 //            adventure.setSouth(currentRoom);
 //            adventure.setEast(currentRoom);
 //            adventure.setWest(currentRoom);
-            descriptionTextArea.append( "You cannot go that way.  Try another direction. \n" );
+            descriptionTextArea.append("You cannot go that way.  Try another direction. \n");
             dontGivePoints = true;
             points = 0;
-        }
-//        else if (nextFile == east)
-//        {
-//        
-//        }
-        else
-        {
+        } //        else if (nextFile == east)
+        //        {
+        //        
+        //        }
+        else {
             points = 0;
 
         }
 
-
         //previousRoom = currentRoom;
-        
-        
-        
-        
-    
+
     }//GEN-LAST:event_commandTextFieldActionPerformed
 
     /**
@@ -305,25 +292,22 @@ public class MP3JFrame extends javax.swing.JFrame {
             }
         });
     }
-    
-   
-    
+
     private void displayRoomInfo() {
-        descriptionTextArea.append( occupiedRoom.getLongDescription() );
+        descriptionTextArea.append(occupiedRoom.getLongDescription());
     }
-    
-    
-    private void move( int direction ) {
-        if ( direction < 0 ) {
+
+    private void move(int direction) {
+        if (direction < 0) {
             String s = "You can't go in that direction.\n" + occupiedRoom.getLongDescription();
-            descriptionTextArea.append( s );
+            descriptionTextArea.append(s);
             return;
         }
-        
-        occupiedRoom = rooms.get( direction );
+
+        occupiedRoom = rooms.get(direction);
         displayRoomInfo();
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel commandJLabel;
     private javax.swing.JTextField commandTextField;
