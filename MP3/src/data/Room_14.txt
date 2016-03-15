@@ -1,6 +1,4 @@
-// ROOM 14
+14
 16 13 17 15 16 13
 Frontyard.jpg
-The large frontyard.
 The large frontyard that stands in front of the house.  The two sevant houses can be seen from here, as well as the entryway.
-END

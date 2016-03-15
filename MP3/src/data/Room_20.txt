@@ -1,6 +1,4 @@
-// ROOM 20
+20
 -1 18 21 -1 -1 18
 NewYorkAvenue.jpg
-You are standing on New York Avenue.
 You are standing on New York Avenue.  You can see the Town Hall from here.
-END

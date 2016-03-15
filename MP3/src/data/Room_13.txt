@@ -2,6 +2,4 @@
 14 11 -1 -1 14 11
 0
 FrontPorch.jpg
-The Front Porch of the house.
 The Front Porch of the house.  A small little place to adore the front yard.
-END

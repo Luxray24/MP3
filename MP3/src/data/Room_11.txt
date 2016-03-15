@@ -1,7 +1,5 @@
-// ROOM 11
+11
 13 6 -1 10 13 6
 0
 Enterance.jpg
-The entryway of the house.
 The entryway of the house.  You can see the front porch, the dining hall and the hallway from here.  
-END

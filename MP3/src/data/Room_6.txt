@@ -1,8 +1,5 @@
-// ROOM 6
+6
 11 8 5 7  11 8
 0
 Hallway.jpg
-A long hallway.
-A long hallway that connects the East side of the building to the west.  A grand staircase is on the west side.
-You can see the East room, the Main enerance, the staircase, and the kitchen.
-END
+A long hallway that connects the East side of the building to the west.  A grand staircase is on the west side.  You can see the East room, the Main entrance, the staircase, and the kitchen.

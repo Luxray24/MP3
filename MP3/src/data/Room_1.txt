@@ -2,5 +2,4 @@
 0 2 -1 -1 0 2
 0
 BackPorch.jpg
-You are standing on the Back Porch.  A large grassy area can be seen, luckily it isn't the British troops.
-You can see the Oval Room and the backyard from this view.  
+You are standing on the Back Porch.  A large grassy area can be seen, luckily it isn't the British troops.  You can see the Oval Room and the backyard from this view.  

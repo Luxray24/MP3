@@ -1,6 +1,4 @@
-// ROOM 23
+23
 19 -1 -1 -1 19 -1
 Blacksmith.jpe
-You are at the Blacksmith's.
 You are at the Blacksmith's.  You see a notice on the wall that says "Collecting silver.  If you want to donate to a good cause, leave them here!"
-END

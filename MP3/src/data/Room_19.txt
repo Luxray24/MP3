@@ -1,6 +1,4 @@
-// ROOM 19
+19
 -1 23 -1 18 -1 23
 WestFStreet.jpg
-You are standing on West F Street.
 You are standing on West F Street.  It is just the connection of the East part, and it reaches down to a blacksmith.
-END
