@@ -259,13 +259,13 @@ class Room extends javax.swing.JFrame {
         String temp = choice;
         int next;
         
-        if (temp.equals("go north") || temp.equals("north") || temp.equals("move north"))
+        if (temp.equals("go north") || temp.equals("north") || temp.equals("move north") || temp.equals("n"))
             next = getNorth();
-        else if (temp.equals("go south") || temp.equals("south") || temp.equals("move south"))
+        else if (temp.equals("go south") || temp.equals("south") || temp.equals("move south") || temp.equals("s"))
             next = getSouth();
-        else if (temp.equals("go east") || temp.equals("east") || temp.equals("move east"))
+        else if (temp.equals("go east") || temp.equals("east") || temp.equals("move east") || temp.equals("e"))
             next = getEast();
-        else if (temp.equals("go west") || temp.equals("west") || temp.equals("move west"))
+        else if (temp.equals("go west") || temp.equals("west") || temp.equals("move west") || temp.equals("w"))
             next = getWest();
         else
             next = -1;
