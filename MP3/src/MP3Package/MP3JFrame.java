@@ -139,7 +139,9 @@ public class MP3JFrame extends javax.swing.JFrame {
         );
         imageJPanelLayout.setVerticalGroup(
             imageJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+            .addGroup(imageJPanelLayout.createSequentialGroup()
+                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 198, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -162,10 +164,10 @@ public class MP3JFrame extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(imageJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(commandJLabel)
@@ -179,9 +181,10 @@ public class MP3JFrame extends javax.swing.JFrame {
     private void commandTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commandTextFieldActionPerformed
         // TODO add your handling code here:
         points = 0;
-        while (true)
-        {
+        
             nextRoom = commandTextField.getText().toLowerCase();
+            descriptionTextArea.append( ">" + nextRoom + "\n" );
+            commandTextField.setText("");
             
             if(nextRoom.equals("quit"))
             {
@@ -193,10 +196,10 @@ public class MP3JFrame extends javax.swing.JFrame {
 //                adventure.setSouth(currentRoom);
 //                adventure.setEast(currentRoom);
 //                adventure.setWest(currentRoom);
-                descriptionTextArea.append( "Your score is: " + totalPoints + "." );
+                descriptionTextArea.append( "Your score is: " + totalPoints + ". \n" );
                 dontGivePoints = true;
                 points = 0;
-                break;
+                
                 
             }
             
@@ -208,16 +211,16 @@ public class MP3JFrame extends javax.swing.JFrame {
                 adventure.setSouth(currentRoom);
                 adventure.setEast(currentRoom);
                 adventure.setWest(currentRoom);
-                descriptionTextArea.append( "You cannot go that way.  Try another direction." );
+                descriptionTextArea.append( "You cannot go that way.  Try another direction. \n" );
                 dontGivePoints = true;
                 points = 0;
             }
             else
             {
                 points = 0;
-                break;
+                
             }
-        }
+        
         
         previousRoom = currentRoom;
         continueWithGame();
