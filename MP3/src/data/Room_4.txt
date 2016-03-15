@@ -2,4 +2,5 @@
 5 -1 -1 0 5 -1
 0
 Library.jpg
+A cute little Library surrounded by books.
 A cute little Library surrounded by books.  In the middle of the room is a desk with scattered papers.  Some may be important.  You can see the Oval room and the East room.

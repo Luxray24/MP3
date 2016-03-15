@@ -2,4 +2,5 @@
 -1 -1 8 -1 -1 -1
 0
 Pantry.jpg
+A small pantry filled with stored food.
 A small pantry filled with stored food.  If only you could take it all with you.

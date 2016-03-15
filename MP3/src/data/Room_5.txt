@@ -2,4 +2,5 @@
 12 4 -1 6 12 4
 0
 EastRoom.jpg
+A long room called the East Room.
 A long room called the East Room.  You see a high ceiling and an array of portraits.  At the other end of the room is the ballroom.  You can see the hallway, Ballroom, and the library. 

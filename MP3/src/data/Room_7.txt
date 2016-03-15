@@ -2,4 +2,5 @@
 -1 -1 6 -1 -1 -1
 0
 Stairs.jpg
-A grand staircase that leads upstairs.  You propbably don't have time to go explore up there...  Maybe you should go back into the hallway.
+A grand staircase that leads upstairs.
+A grand staircase that leads upstairs.  You probably don't have time to go explore up there...  Maybe you should go back into the hallway.
