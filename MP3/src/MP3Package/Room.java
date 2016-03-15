@@ -35,12 +35,11 @@ class Room extends javax.swing.JFrame {
 
 //    ArrayList<Room> rooms = new ArrayList<Room>();
 //    Room currentRoom = null;
+    
+
     //Constructor
-    Room() {
-
-    }
-
-    Room(int directionNorth, int directionSouth, int directionEast, int directionWest, int directionUp, int directionDown, int points, String imageSRC, String text, String textLong) {
+    Room(int directionNorth, int directionSouth, int directionEast, int directionWest, int directionUp, int directionDown, int points, String imageSRC, String text, String textLong) 
+    {
         north = directionNorth;
         south = directionSouth;
         east = directionEast;
@@ -48,7 +47,7 @@ class Room extends javax.swing.JFrame {
         up = directionUp;
         down = directionDown;
         pointValue = points;
-        //imageForRoom = imageSRC;
+        String imageName = imageSRC;
         shortDescription = text;
         longDescription = textLong;
     }
