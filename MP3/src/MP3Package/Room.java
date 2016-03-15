@@ -42,94 +42,8 @@ class Room extends javax.swing.JFrame {
         
     }
 
-    private Room(int parseInt, int parseInt0, int parseInt1, int parseInt2, String text) {
+    Room(int parseInt, int parseInt0, int parseInt1, int parseInt2, String text) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    public void readFile(File file)
-    {
-        int room = 0;
-        String directions = " ";
-        int points = 0;
-        String image = "";
-        String shortDescription = ""; 
-        String longDescription = "";
-        String temp = "";
-        
-        try
-        {
-            FileReader in = new FileReader(file);
-            BufferedReader br = new BufferedReader(in);
-            
-            room = Integer.parseInt(br.readLine());
-            directions = br.readLine();
-            points = Integer.parseInt(br.readLine());
-            image = br.readLine();
-            shortDescription = br.readLine(); 
-            setRoom(room);
-            setPointValue(points);
-            setImageForRoom(image);
-            setShortDescription(shortDescription);
-            assignDirections(directions);
-            
-            for (int i = 0; i < 6; i++)
-            {
-                temp = br.readLine();
-                if (temp == null)
-                    temp = "\n";
-                
-                longDescription += temp + " ";
-            }
-            
-            setLongDescription( longDescription);
-            
-            in.close();
-            br.close();
-        }
-        catch (IOException | NumberFormatException e)
-        {
-            e.printStackTrace();
-        }
-        
-
-//try {
-//            // open up data file stored in src/data/roomdata.txt
-//            // remember that the "src" folder is the root for JAR-based file resources
-//            InputStreamReader isr = new InputStreamReader(  
-//                                        this.getClass().getResourceAsStream("/data/roomdata.txt") );
-//            BufferedReader br     = new BufferedReader( isr );
-//            
-//            // read in the file - assuming it has correct format for each room of:
-//            // 1. comment line
-//            // 2. line of four space-separated integers representing connecting 
-//            //    rooms to (in order) the north, south, east, and west.
-//            //    The value -1 is used to indicate no connection in that direction.
-//            // 3. Line of descriptive text associated with the room.
-//            while ( true ) {
-//                String comment = br.readLine();
-//                if ( comment == null ) break;
-//                
-//                String roomConnections = br.readLine();
-//                // split will use the passed delimiter to split a string
-//                // into multiple strings housed in an array.
-//                String[] nsew = roomConnections.split( " " );
-//                String text = br.readLine();
-//                Room newRoom = new Room( Integer.parseInt( nsew[0] ),
-//                                         Integer.parseInt( nsew[1] ),
-//                                         Integer.parseInt( nsew[2] ),
-//                                         Integer.parseInt( nsew[3] ),
-//                                         text                         );
-//                rooms.add( newRoom );
-//            }
-//            br.close();
-//        }
-//        catch ( IOException e ) {
-//        }
-//        
-//        currentRoom = rooms.get( 0 );
-//        displayRoomInfo();
-
-        
     }
     
     public void setRoom(int currentRoom)
@@ -242,7 +156,7 @@ class Room extends javax.swing.JFrame {
     
     public void assignDirections(String directions)
     {
-        String[] temp = directions.split(space);
+        String[] temp = directions.split(" ");
         int tempNorth = Integer.parseInt(temp[0]);
         int tempSouth = Integer.parseInt(temp[1]);
         int tempEast = Integer.parseInt(temp[2]);

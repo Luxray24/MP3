@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class MP3JFrame extends javax.swing.JFrame {
 
-    int currentRoom = 0;
+    //int currentRoom = 0;
     int previousRoom = 0;
     boolean itemInRoom = false;
     int points = 0;
@@ -37,11 +37,14 @@ public class MP3JFrame extends javax.swing.JFrame {
     
     
     Inventory[] gameInventory = new Inventory[8];
-    ArrayList<Room> rooms = new ArrayList<Room>();
     int[] roomArray = new int[24];
     Room adventure = new Room();
     File[] fileArray = new File[24];
     Room occupiedRoom = null;
+    
+    ArrayList<Room> rooms = new ArrayList<Room>();
+    Room currentRoom = null;
+
     
     /**
      * Creates new form MP3JFrame
@@ -67,25 +70,59 @@ public class MP3JFrame extends javax.swing.JFrame {
         
         JOptionPane.showMessageDialog(null, message, title, messageType, dolleyIcon); //Message Dialog introducing the game.
         
+        
+        try {
+            // open up data file stored in src/data/roomdata.txt
+            // remember that the "src" folder is the root for JAR-based file resources
+            InputStreamReader isr = new InputStreamReader(  
+                                        this.getClass().getResourceAsStream("/data/Rooms.txt") );
+            BufferedReader br     = new BufferedReader( isr );
+            
+            // read in the file - assuming it has correct format for each room of:
+            // 1. comment line
+            // 2. line of four space-separated integers representing connecting 
+            //    rooms to (in order) the north, south, east, and west.
+            //    The value -1 is used to indicate no connection in that direction.
+            // 3. Line of descriptive text associated with the room.
+            while ( true ) {
+                String comment = br.readLine();
+                if ( comment == null ) break;
+                
+                String roomConnections = br.readLine();
+                // split will use the passed delimiter to split a string
+                // into multiple strings housed in an array.
+                String[] nsew = roomConnections.split( " " );
+                String text = br.readLine();
+                Room newRoom = new Room( Integer.parseInt( nsew[0] ),
+                                         Integer.parseInt( nsew[1] ),
+                                         Integer.parseInt( nsew[2] ),
+                                         Integer.parseInt( nsew[3] ),
+                                         text                         );
+                rooms.add( newRoom );
+            }
+            br.close();
+        }
+        catch ( IOException e ) {
+        }
+        
+        currentRoom = rooms.get( 0 );
+        displayRoomInfo();
+        
+        
         setLocationRelativeTo(null);
         
-        for( int k = 0; k < 8; k++)
-        {
-            gameInventory[k] = new Inventory(k, false, false);
-        }
-        for( int i = 0; i <= 23; i++)
-        {
-            String roomFileName = "src/data/Room_" + i + ".txt";
-            fileArray[i] = new File(roomFileName);
-        }
+//        for( int k = 0; k < 8; k++)
+//        {
+//            gameInventory[k] = new Inventory(k, false, false);
+//        }
+//        for( int i = 0; i <= 23; i++)
+//        {
+//            String roomFileName = "src/data/Room_" + i + ".txt";
+//            fileArray[i] = new File(roomFileName);
+//        }
         
         
-        adventure.readFile(fileArray[0]);
-        previousRoom = adventure.getRoom();
-        descriptionTextArea.setText(adventure.getLongDescription());
-        points = adventure.getPointValue();
-        totalPoints += points;
-        imageLabel.setIcon(adventure.getImageForRoom());              
+           
     }
     
     
@@ -182,48 +219,52 @@ public class MP3JFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         points = 0;
         
-            nextRoom = commandTextField.getText().toLowerCase();
-            descriptionTextArea.append( ">" + nextRoom + "\n" );
-            commandTextField.setText("");
-            
-            if(nextRoom.equals("quit"))
-            {
-                System.exit(1);
-            }
-            else if (nextRoom.equals("score"))
-            {
+        nextRoom = commandTextField.getText().toLowerCase();
+        descriptionTextArea.append( ">" + nextRoom + "\n" );
+        commandTextField.setText("");
+
+        if(nextRoom.equals("quit"))
+        {
+            System.exit(1);
+        }
+        else if (nextRoom.equals("score"))
+        {
 //                adventure.setNorth(currentRoom);
 //                adventure.setSouth(currentRoom);
 //                adventure.setEast(currentRoom);
 //                adventure.setWest(currentRoom);
-                descriptionTextArea.append( "Your score is: " + totalPoints + ". \n" );
-                dontGivePoints = true;
-                points = 0;
-                
-                
-            }
-            
-            nextFile = adventure.getNextDirection(nextRoom);
-            
-            if (nextFile == -1)
-            {
-                adventure.setNorth(currentRoom);
-                adventure.setSouth(currentRoom);
-                adventure.setEast(currentRoom);
-                adventure.setWest(currentRoom);
-                descriptionTextArea.append( "You cannot go that way.  Try another direction. \n" );
-                dontGivePoints = true;
-                points = 0;
-            }
-            else
-            {
-                points = 0;
-                
-            }
+            descriptionTextArea.append( "Your score is: " + totalPoints + ". \n" );
+            dontGivePoints = true;
+            points = 0;
+
+        }
         
+        //adventure.assignDirections(nextRoom);
+        nextFile = adventure.getNextDirection(nextRoom);
+
+        if (nextFile == -1)
+        {
+//            adventure.setNorth(currentRoom);
+//            adventure.setSouth(currentRoom);
+//            adventure.setEast(currentRoom);
+//            adventure.setWest(currentRoom);
+            descriptionTextArea.append( "You cannot go that way.  Try another direction. \n" );
+            dontGivePoints = true;
+            points = 0;
+        }
+//        else if (nextFile == east)
+//        {
+//        
+//        }
+        else
+        {
+            points = 0;
+
+        }
+
+
+        //previousRoom = currentRoom;
         
-        previousRoom = currentRoom;
-        continueWithGame();
         
         
         
@@ -265,11 +306,7 @@ public class MP3JFrame extends javax.swing.JFrame {
         });
     }
     
-    private void continueWithGame()
-    {
-        adventure.readFile(fileArray[nextFile]);
-        
-    }
+   
     
     private void displayRoomInfo() {
         descriptionTextArea.append( occupiedRoom.getLongDescription() );
