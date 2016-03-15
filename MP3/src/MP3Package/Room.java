@@ -20,10 +20,12 @@ import javax.swing.ImageIcon;
 class Room extends javax.swing.JFrame {
 
     //Instance variables 
-    private int north; //Dicretions
+    private int north; //Diretions
     private int south;
     private int east;
     private int west;
+    private int up;
+    private int down;
     private int pointValue; //Current amount of points
     private int currentRoom; //Current room
     private String shortDescription; //Short and long description of room
@@ -38,8 +40,17 @@ class Room extends javax.swing.JFrame {
 
     }
 
-    Room(int directionNorth0, int directionSouth, int directionEast, int directionWest, int directionUp, int directionDown, int points, String imageSRC, String text, String textLong) {
-        setRoom(0);
+    Room(int directionNorth, int directionSouth, int directionEast, int directionWest, int directionUp, int directionDown, int points, String imageSRC, String text, String textLong) {
+        north = directionNorth;
+        south = directionSouth;
+        east = directionEast;
+        west = directionWest;
+        up = directionUp;
+        down = directionDown;
+        pointValue = points;
+        //imageForRoom = imageSRC;
+        shortDescription = text;
+        longDescription = textLong;
     }
 
     public void setRoom(int currentRoom) {

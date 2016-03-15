@@ -25,7 +25,7 @@ public class MP3JFrame extends javax.swing.JFrame {
     int points = 0;
     int totalPoints = 0;
     int pointValue = 25;
-    int room;
+    final int ROOM = 24;
     int choice;
     boolean dontGivePoints;
     int numberOfRooms = 0;
@@ -106,6 +106,8 @@ public class MP3JFrame extends javax.swing.JFrame {
                         text,
                         textLong);
                 rooms.add(newRoom);
+                String abc = br.readLine();
+                System.out.println(textLong);
             }
             br.close();
         } catch (IOException e) {

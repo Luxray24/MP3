@@ -41,7 +41,7 @@ A long room called the East Room.
 A long room called the East Room.  You see a high ceiling and an array of portraits.  At the other end of the room is the ballroom.  You can see the hallway, Ballroom, and the library.
 END
 // ROOM 6
-11 8 5 7  11 8
+11 8 5 7 11 8
 0
 Hallway.jpg
 A long hallway.
@@ -98,60 +98,70 @@ The Front Porch of the house.  A small little place to adore the front yard.
 END
 // ROOM 14
 16 13 17 15 16 13
+0
 Frontyard.jpg
 The large front yard.
 The large front yard that stands in front of the house.  The two servant houses can be seen from here, as well as the entryway.
 END
 // ROOM 15
 -1 -1 14 -1 -1 -1
+0
 ServantHouse1.jpg
 The first servant house.
 The first servant house.  A small little house that is filled with great people.  On the door is a note that says "Place the portrait here, it needs to be saved!"
 END
 // ROOM 16
 -1 14 -1 -1 -1 14
+0
 ServantHouse2.jpg
 The second servant house.
 The second servant house.  A little larger than the other, but filled with less people.  On the door is a note that says "Place any China by the door if you want it to be saved!"
 END
 // ROOM 17
 -1 -1 18 14 -1 -1
+0
 EnteranceGate.jpg
 The entryway to the grounds.
 The entryway to the grounds.  It is just a simple white gate.  It won't stand up against the British troops!
 END
 // ROOM 18
 20 22 19 17 20 22
+0
 EastFStreet.jpe
 You are standing on East F Street.
 You are standing on East F Street.  You can see the church here, and also to connecting streets to the north and east.
 END
 // ROOM 19
 -1 23 -1 18 -1 23
+0
 WestFStreet.jpg
 You are standing on West F Street.
 You are standing on West F Street.  It is just the connection of the East part, and it reaches down to a blacksmith.
 END
 // ROOM 20
 -1 18 21 -1 -1 18
+0
 NewYorkAvenue.jpg
 You are standing on New York Avenue.
 You are standing on New York Avenue.  You can see the Town Hall from here.
 END
 // ROOM 21
 -1 -1 -1 20 -1 -1
+0
 TownHall.jpg
 You are in the Town Hall.
 You are in the Town Hall.  On the front desk it has a letter that reads "Place the state papers here.  They must be saved!"
 END
 // ROOM 22
 18 -1 -1 -1 18 -1
+0
 Church.jpg
 You are in the church.
 You are in the church.  You see a pile of curtains here, maybe this implies something about the Red Drapes you have seen...
 END
 // ROOM 23
 19 -1 -1 -1 19 -1
+0
 Blacksmith.jpe
 You are at the Blacksmith's.
 You are at the Blacksmith's.  You see a notice on the wall that says "Collecting silver.  If you want to donate to a good cause, leave them here!"
