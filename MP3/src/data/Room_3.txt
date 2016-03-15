@@ -1,0 +1,6 @@
+3
+-1 -1 -1 2 -1 -1
+0
+Shed.jpg
+A small Shed with gardening tools inside such as a hoe, a wheel barrow, some gloves...  
+Nothing that can help you in the situation at hand.  You should maybe go back.

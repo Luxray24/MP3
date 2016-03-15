@@ -1,0 +1,231 @@
+// ROOM 0
+-1 1 4 -1 -1 1
+0
+OvalRoom.jpg
+You are in the Oval Room.
+You are standing in the Oval Room. An oval shaped room with gorgous paintings on the walls.  
+Red drapes hang from the tall windows.  You can see the back porch and the library.
+END
+
+// ROOM 1
+0 2 -1 -1 0 2
+0
+BackPorch.jpg
+You are standing on the Back Porch.
+You are standing on the Back Porch.  A large grassy area can be seen, luckily it isn't the British troops.
+You can see the Oval Room and the backyard from this view.  
+END
+
+// ROOM 2
+1 -1 3 -1 1 -1
+0
+Backyard.jpg
+You are in the Backyard.
+You are standing in the Backyard.  Lush grass surrounds where you stand.  
+You see a small shed and wonder what is inside.
+END
+
+// ROOM 3
+-1 -1 -1 2 -1 -1
+0
+Shed.jpg
+A small Shed.
+A small Shed with gardening tools inside such as a hoe, a wheel barrow, some gloves...  
+Nothing that can help you in the situation at hand.  You should maybe go back.
+END
+
+//ROOM 4
+5 -1 -1 0 5 -1
+0
+Library.jpg
+A cute little Library.
+A cute little Library surrounded by books.  In the middle of the room is a desk with scattered papers.  
+Some may be important.  You can see the Oval room and the East room.
+END
+
+// ROOM 5
+12 4 -1 6 12 4
+0
+EastRoom.jpg
+A long room called the East Room.
+A long room called the East Room.  You see a high ceiling and an array of portraits.  At the other end of the room is the ballroom.  
+You can see the hallway, Ballroom, and the library.
+END
+
+// ROOM 6
+11 8 5 7  11 8
+0
+Hallway.jpg
+A long hallway.
+A long hallway that connects the East side of the building to the west.  A grand staircase is on the west side.
+You can see the East room, the Main enerance, the staircase, and the kitchen.
+END
+
+// ROOM 7
+-1 -1 6 -1 -1 -1
+0
+Stairs.jpg
+A grand staircase that leads upstairs.
+A grand staircase that leads upstairs.  You propbably don't have time to go explore up there...  Maybe you should go back into the hallway.
+END
+
+// ROOM 8
+6 -1 -1 9 6 -1
+0
+Kitchen.jpg
+A huge kitchen.
+A huge kitchen surrounded by cooking devices.  You see a small cooking oven, as well as piles of shiney silver utensils.
+You can see the pantry and the hallway.
+END
+
+// ROOM 9
+-1 -1 8 -1 -1 -1
+0
+Pantry.jpg
+A small pantry.
+A small pantry filled with stored food.  If only you could take it all with you.
+END
+
+// ROOM 10
+-1 -1 11 -1 -1 -1
+0
+DiningRoom.jpg
+A large dining room.
+A large dining room with a long table.  The table is covered with Blue China and Gold China plates and bowls.  
+You were planning on having a grand dinner for 40 people, but those plans seemed to have changed.
+END
+
+// ROOM 11
+13 6 -1 10 13 6
+0
+Enterance.jpg
+The entryway of the house.
+The entryway of the house.  You can see the front porch, the dining hall and the hallway from here.  
+END
+
+// ROOM 12
+-1 5 -1 -1 -1 5
+0
+Ballroom.jpg
+The Ballroom at the end of the East Room.
+The Ballroom at the end of the East Room.  A grand piano sits in the middle.  Just think about the beautiful music and danses that have gone on in here!
+END
+
+// ROOM 13
+14 11 -1 -1 14 11
+0
+FrontPorch.jpg
+The Front Porch of the house.
+The Front Porch of the house.  A small little place to adore the front yard.
+END
+
+// ROOM 14
+16 13 17 15 16 13
+Frontyard.jpg
+The large frontyard.
+The large frontyard that stands in front of the house.  The two sevant houses can be seen from here, as well as the entryway.
+END
+
+// ROOM 15
+-1 -1 14 -1 -1 -1
+ServantHouse1.jpg
+The first servant house.
+The first servant house.  A small little house that is filled with great people.  On the door is a note that says "Place the portrait here, it needs to be saved!"
+END
+
+// ROOM 16
+-1 14 -1 -1 -1 14
+ServantHouse2.jpg
+The second servant house.
+The second servamt house.  A little larger than the other, but filled with less people.  On the door is a note that says "Place any China by the door if you want it to be saved!"
+END
+
+// ROOM 17
+-1 -1 18 14 -1 -1
+EnteranceGate.jpg
+The entryway to the grounds.
+The entryway to the grounds.  It is just a simple white gate.  It won't stand up against the British troops!
+END
+
+// ROOM 18
+20 22 19 17 20 22
+EastFStreet.jpe
+You are standing on East F Street.
+You are standing on East F Street.  You can see the church here, and also to conncenting streets to the north and east.
+END
+
+// ROOM 19
+-1 23 -1 18 -1 23
+WestFStreet.jpg
+You are standing on West F Street.
+You are standing on West F Street.  It is just the connection of the East part, and it reaches down to a blacksmith.
+END
+
+// ROOM 20
+-1 18 21 -1 -1 18
+NewYorkAvenue.jpg
+You are standing on New York Avenue.
+You are standing on New York Avenue.  You can see the Town Hall from here.
+END
+
+// ROOM 21
+-1 -1 -1 20 -1 -1
+TownHall.jpg
+You are in the Town Hall.
+You are in the Town Hall.  On the front desk it has a letter that reads "Place the state papers here.  They must be saved!"
+END
+
+// ROOM 22
+18 -1 -1 -1 18 -1
+Church.jpg
+You are in the church.
+You are in the church.  You see a pile of curtains here, maybe this implies something about the Red Drapes you have seen...
+END
+
+// ROOM 23
+19 -1 -1 -1 19 -1
+Blacksmith.jpe
+You are at the Blacksmith's.
+You are at the Blacksmith's.  You see a notice on the wall that says "Collecting silver.  If you want to donate to a good cause, leave them here!"
+END
+ 
+
+
+
+
+
+
+
+
+
+
+
+Items
+case 0:
+                itemName = "Portrait"; break;  5    15
+            case 1:
+                itemName = "State Papers"; break;  4   21
+            case 2:
+                itemName = "Fork"; break;  8  23
+            case 3:
+                itemName = "Spoon"; break;8
+            case 4:
+                itemName = "Knife"; break;8
+            case 5:
+                itemName = "Red Drapes"; break;  0  22
+            case 6:
+                itemName = "Spyglass"; break;  1
+            case 7:
+                itemName = "Blue Plate"; break;  10  16
+            case 8:
+                itemName = "Gold China"; break;  10
+            default:
+                itemName = "Nothing."; break;
+
+
+
+
+
+
+
+

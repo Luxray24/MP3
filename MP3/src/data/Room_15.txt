@@ -1,0 +1,6 @@
+// ROOM 15
+-1 -1 14 -1 -1 -1
+ServantHouse1.jpg
+The first servant house.
+The first servant house.  A small little house that is filled with great people.  On the door is a note that says "Place the portrait here, it needs to be saved!"
+END

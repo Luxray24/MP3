@@ -1,0 +1,8 @@
+// ROOM 8
+6 -1 -1 9 6 -1
+0
+Kitchen.jpg
+A huge kitchen.
+A huge kitchen surrounded by cooking devices.  You see a small cooking oven, as well as piles of shiney silver utensils.
+You can see the pantry and the hallway.
+END
