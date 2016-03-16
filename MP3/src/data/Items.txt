@@ -1,27 +1,26 @@
-Portrait
-The portrait of George Washington.  It is the most prized possession of the White House.
+portrait
 5 15 25
-State Papers
-A stack of important papers.  
+END
+state papers
 4 21 25
-Fork
-A shiny fork.
+END
+fork
 8 23 25
-Spoon
-A dented spoon.
+END
+spoon
 8 23 25
-Knife
-A sharp knife.
+END
+knife
 8 23 25
-Red Drapes
-Floor length curtains made out of velvet.
+END
+red drapes
 0 22 25
-Spyglass
-Used to look off into the distance.
+END
+spyglass
 1 1 25
-Blue Plate
-A famous Blue Plate with a design of the river.
+END
+blue plate
 10 16 25
-Gold China
-White china with gold accents.
+END
+gold china
 10 16 25

@@ -28,7 +28,10 @@ public class MP3JFrame extends javax.swing.JFrame {
     Room currentRoom = null;
     
     ArrayList<Inventory> objects = new ArrayList<Inventory>();
-    Inventory inventory = null;
+    Inventory items = null;
+    
+    ArrayList<Inventory> playerInventory = new ArrayList<Inventory>();
+    Inventory personalInventory = null;
 
     /**
      * Creates new form MP3JFrame
@@ -122,26 +125,25 @@ public class MP3JFrame extends javax.swing.JFrame {
 
             // read in the file - assuming it has correct format for each room of:
             // 1. Name line
-            // 2. Description of object.
-            // 3. 3 numbers.  First is where is it located, second is where it is used, thrid is amount of points
+            // 2. 3 numbers.  First is where is it located, second is where it is used, thrid is amount of points
+            // 3. END
             while (true) {
-                String comment = br.readLine();
-                if (comment == null) {
-                    break;
-                }
-
+                
                 String objectName = br.readLine();
-                String text = br.readLine();
                 String itemConnections = br.readLine();
                 // split will use the passed delimiter to split a string
                 // into multiple strings housed in an array.
                 String[] nsew = itemConnections.split(" ");
-                Inventory newInventory = new Inventory(objectName, text, Integer.parseInt(nsew[0]),
+                Inventory newInventory = new Inventory(objectName, Integer.parseInt(nsew[0]),
                         Integer.parseInt(nsew[1]),
                         Integer.parseInt(nsew[2]));
                 objects.add(newInventory);
+                
                 String end = br.readLine();
-                System.out.println(text);
+                if (end == null) 
+                {
+                    break;
+                }
             }
             br.close();
         } 
@@ -150,13 +152,7 @@ public class MP3JFrame extends javax.swing.JFrame {
             
         }
 
-        currentRoom = rooms.get( 0 );
-        imageLabel.setIcon(currentRoom.getImageForRoom());
-        displayRoomInfo();
         
-
-
-
     }
 
     /**
@@ -245,7 +241,7 @@ public class MP3JFrame extends javax.swing.JFrame {
     private void commandTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commandTextFieldActionPerformed
         
         String command = commandTextField.getText().toLowerCase();
-        descriptionTextArea.append(">" + command + "\n");
+        descriptionTextArea.append(">" + command + "\n ");
         commandTextField.setText("");
         
 
@@ -255,7 +251,7 @@ public class MP3JFrame extends javax.swing.JFrame {
         } 
         else if (command.equals("score")) 
         {
-            descriptionTextArea.append("Your score is: " + totalPoints + "\n");
+            descriptionTextArea.append("Your score is: " + totalPoints + "\n \n");
         }
         else if (command.equals("look") || command.equals("l"))
         {
@@ -265,7 +261,7 @@ public class MP3JFrame extends javax.swing.JFrame {
         {
             if (currentRoom.getNorth() < 0)
             {
-                descriptionTextArea.append( "You cannot go that way.  Please try again. \n");
+                descriptionTextArea.append( "You cannot go that way.  Please try again. \n \n");
             }
             else 
             {
@@ -278,7 +274,7 @@ public class MP3JFrame extends javax.swing.JFrame {
             
             if (currentRoom.getSouth() < 0)
             {
-                descriptionTextArea.append( "You cannot go that way.  Please try again. \n");
+                descriptionTextArea.append( "You cannot go that way.  Please try again. \n \n");
             }
             else 
             {
@@ -291,7 +287,7 @@ public class MP3JFrame extends javax.swing.JFrame {
             
             if (currentRoom.getEast() < 0)
             {
-                descriptionTextArea.append( "You cannot go that way.  Please try again. \n");
+                descriptionTextArea.append( "You cannot go that way.  Please try again. \n \n");
             }
             else 
             {
@@ -304,7 +300,7 @@ public class MP3JFrame extends javax.swing.JFrame {
             
             if (currentRoom.getWest() < 0)
             {
-                descriptionTextArea.append( "You cannot go that way.  Please try again. \n");
+                descriptionTextArea.append( "You cannot go that way.  Please try again. \n \n");
             }
             else 
             {
@@ -312,13 +308,49 @@ public class MP3JFrame extends javax.swing.JFrame {
                 displayRoomInfo();
             }
         }
+        else if (command.startsWith("take"))
+        {
+            for (int i = 0; i < objects.size(); i++)
+            {
+                items = objects.get(i);
+                if (command.contains(items.getName()))
+                {
+                    playerInventory.add(items);
+                    objects.remove(items);
+                    descriptionTextArea.append(items.getName() + " was added to your inventory. \n \n");
+                }
+                
+            } 
+        }
+        else if (command.startsWith("drop"))
+        {
+            for (int i = 0; i < objects.size(); i++)
+            {
+                items = objects.get(i);
+                if (command.contains(items.getName()))
+                {
+                    playerInventory.remove(items);
+                    objects.add(items);
+                    descriptionTextArea.append(items.getName() + " was dropped from your inventory. \n \n");
+                }
+                
+            } 
+        }
         else if (command.equals("inventory") || command.equals("i"))
         {
-            displayRoomInfo();
+            //Inventory tempInv = null;
+            descriptionTextArea.append( "The objects in your inventory are: \n");
+            for (int i = 0; i < playerInventory.size(); i++)
+            {
+                
+                personalInventory = playerInventory.get(i);
+                descriptionTextArea.append(personalInventory.getName() + "\n");
+            }
+            descriptionTextArea.append( "\n");
         }
         else
         {
-            descriptionTextArea.append("That isn't a command I know.  Please try again. \n");
+            descriptionTextArea.append("That isn't a command I know.  Please try again. \n \n");
         }
         
 
@@ -360,9 +392,12 @@ public class MP3JFrame extends javax.swing.JFrame {
     }
     
     private void displayRoomInfo() {
-        descriptionTextArea.append( currentRoom.getLongDescription() + "\n" );
+        descriptionTextArea.append( currentRoom.getLongDescription() + "\n \n" );
+        
     }
+    
 
+   
 
     
 

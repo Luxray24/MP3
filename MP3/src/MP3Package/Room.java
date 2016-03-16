@@ -34,9 +34,6 @@ class Room extends javax.swing.JFrame {
     private String space = " ";
     private String image;
 
-//    ArrayList<Room> rooms = new ArrayList<Room>();
-//    Room currentRoom = null;
-    
 
     //Constructor
     Room(int directionNorth, int directionSouth, int directionEast, int directionWest, int directionUp, int directionDown, int points, String imageSRC, String text, String textLong) 

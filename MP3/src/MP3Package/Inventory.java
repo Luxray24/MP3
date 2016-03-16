@@ -14,22 +14,51 @@ package MP3Package;
 public class Inventory {
     
     //Instance variables
-    String name;
-    String description;
-    int locationFound;
-    int locationUsed;
-    int points;
+    String objectName;
+    int foundLocation;
+    int usedLocation;
+    int objectPoints;
     
     //Constructor
-    public Inventory (String name, String description, int locationFound, int locationUsed, int points)
+    public Inventory (String name, int locationFound, int locationUsed, int points)
     {
-        this.name = name;
-        this.description = description;
-        this.locationFound = locationFound;
-        this.locationUsed = locationUsed;
-        this.points = points;
+        objectName = name;
+        foundLocation = locationFound;
+        usedLocation = locationUsed;
+        objectPoints = points;
     }
     
+    public void setName(String name) {
+        this.objectName = name;
+    }
+
+    public String getName() {
+        return objectName;
+    }
+    
+    public void setPointValue(int points) {
+        this.objectPoints = points;
+    }
+
+    public int getPointValue() {
+        return objectPoints;
+    }
+    
+    public void setLocationFound(int locationFound) {
+        this.foundLocation = locationFound;
+    }
+
+    public int getLocationFound() {
+        return foundLocation;
+    }
+    
+    public void setLocationUsed(int locationUsed) {
+        this.usedLocation = locationUsed;
+    }
+
+    public int getLocationUsed() {
+        return usedLocation;
+    }
     
     
     
