@@ -324,14 +324,14 @@ public class MP3JFrame extends javax.swing.JFrame {
         }
         else if (command.startsWith("drop"))
         {
-            for (int i = 0; i < objects.size(); i++)
+            for (int i = 0; i < playerInventory.size(); i++)
             {
-                items = objects.get(i);
-                if (command.contains(items.getName()))
+                personalInventory = playerInventory.get(i);
+                if (command.contains(personalInventory.getName()))
                 {
-                    playerInventory.remove(items);
-                    objects.add(items);
-                    descriptionTextArea.append(items.getName() + " was dropped from your inventory. \n \n");
+                    playerInventory.remove(personalInventory);
+                    objects.add(personalInventory);
+                    descriptionTextArea.append(personalInventory.getName() + " was dropped from your inventory. \n \n");
                 }
                 
             } 
