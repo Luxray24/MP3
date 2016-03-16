@@ -1,6 +1,0 @@
-// ROOM 13
-14 11 -1 -1 14 11
-0
-FrontPorch.jpg
-The Front Porch of the house.  
-The Front Porch of the House.  A small little place to adore the front yard.

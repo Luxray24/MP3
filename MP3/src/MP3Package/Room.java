@@ -32,6 +32,7 @@ class Room extends javax.swing.JFrame {
     private String longDescription;
     private ImageIcon imageForRoom; //Image for room
     private String space = " ";
+    private String image;
 
 //    ArrayList<Room> rooms = new ArrayList<Room>();
 //    Room currentRoom = null;
@@ -47,7 +48,7 @@ class Room extends javax.swing.JFrame {
         up = directionUp;
         down = directionDown;
         pointValue = points;
-        String imageName = imageSRC;
+        image = imageSRC;
         shortDescription = text;
         longDescription = textLong;
     }
@@ -69,7 +70,7 @@ class Room extends javax.swing.JFrame {
     }
 
     public void setImageForRoom(String image) {
-        this.imageForRoom = new ImageIcon("./images/" + image);
+        this.imageForRoom = new ImageIcon("/images/" + image );
     }
 
     public ImageIcon getImageForRoom() {

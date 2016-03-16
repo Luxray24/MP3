@@ -5,6 +5,7 @@
  */
 package MP3Package;
 
+import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -19,30 +20,15 @@ import javax.swing.JOptionPane;
  */
 public class MP3JFrame extends javax.swing.JFrame {
 
-    //int currentRoom = 0;
-    int previousRoom = 0;
-    boolean itemInRoom = false;
     int points = 0;
     int totalPoints = 0;
-    int pointValue = 25;
-    final int ROOM = 24;
-    int choice;
-    boolean dontGivePoints;
-    int numberOfRooms = 0;
-    String nextRoom;
-    String descriptionAreaStr = "";
-    String shortDescriptionStr = "";
-    ImageIcon roomPicture;
-    int nextFile;
-
-//    Inventory[] gameInventory = new Inventory[8];
-//    int[] roomArray = new int[24];
-//    //Room adventure = new Room();
-//    File[] fileArray = new File[24];
-//    Room occupiedRoom = null;
-
+    
+    
     ArrayList<Room> rooms = new ArrayList<Room>();
     Room currentRoom = null;
+    
+    ArrayList<Inventory> objects = new ArrayList<Inventory>();
+    Inventory inventory = null;
 
     /**
      * Creates new form MP3JFrame
@@ -113,12 +99,60 @@ public class MP3JFrame extends javax.swing.JFrame {
                 System.out.println(textLong);
             }
             br.close();
-        } catch (IOException e) {
+        } 
+        catch (IOException e) 
+        {
+            
         }
 
         currentRoom = rooms.get( 0 );
+        imageLabel.setIcon(currentRoom.getImageForRoom());
         displayRoomInfo();
+        
+        
+        
+        
+        //Inventory
+        try {
+            // open up data file stored in src/data/roomdata.txt
+            // remember that the "src" folder is the root for JAR-based file resources
+            InputStreamReader isr = new InputStreamReader(
+                    this.getClass().getResourceAsStream("/data/Items.txt"));
+            BufferedReader br = new BufferedReader(isr);
 
+            // read in the file - assuming it has correct format for each room of:
+            // 1. Name line
+            // 2. Description of object.
+            // 3. 3 numbers.  First is where is it located, second is where it is used, thrid is amount of points
+            while (true) {
+                String comment = br.readLine();
+                if (comment == null) {
+                    break;
+                }
+
+                String objectName = br.readLine();
+                String text = br.readLine();
+                String itemConnections = br.readLine();
+                // split will use the passed delimiter to split a string
+                // into multiple strings housed in an array.
+                String[] nsew = itemConnections.split(" ");
+                Inventory newInventory = new Inventory(objectName, text, Integer.parseInt(nsew[0]),
+                        Integer.parseInt(nsew[1]),
+                        Integer.parseInt(nsew[2]));
+                objects.add(newInventory);
+                String end = br.readLine();
+                System.out.println(text);
+            }
+            br.close();
+        } 
+        catch (IOException e) 
+        {
+            
+        }
+
+        currentRoom = rooms.get( 0 );
+        imageLabel.setIcon(currentRoom.getImageForRoom());
+        displayRoomInfo();
         
 
 
@@ -171,9 +205,7 @@ public class MP3JFrame extends javax.swing.JFrame {
         );
         imageJPanelLayout.setVerticalGroup(
             imageJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(imageJPanelLayout.createSequentialGroup()
-                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 198, Short.MAX_VALUE))
+            .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -225,29 +257,64 @@ public class MP3JFrame extends javax.swing.JFrame {
         {
             descriptionTextArea.append("Your score is: " + totalPoints + "\n");
         }
-        else if (command.equals("look"))
+        else if (command.equals("look") || command.equals("l"))
         {
             displayRoomInfo();
         }
         else if (command.equals("go north") || command.equals("north") || command.equals("move north") || command.equals("n"))
         {
-            
-            descriptionTextArea.append( currentRoom.getNorth() + "\n");
+            if (currentRoom.getNorth() < 0)
+            {
+                descriptionTextArea.append( "You cannot go that way.  Please try again. \n");
+            }
+            else 
+            {
+                currentRoom = rooms.get( currentRoom.getNorth() );
+                displayRoomInfo();
+            }
         }
         else if (command.equals("go south") || command.equals("south") || command.equals("move south") || command.equals("s"))
         {
             
-            descriptionTextArea.append( currentRoom.getSouth() + "\n");
+            if (currentRoom.getSouth() < 0)
+            {
+                descriptionTextArea.append( "You cannot go that way.  Please try again. \n");
+            }
+            else 
+            {
+                currentRoom = rooms.get( currentRoom.getSouth() );
+                displayRoomInfo();
+            }
         }
         else if (command.equals("go east") || command.equals("east") || command.equals("move east") || command.equals("e"))
         {
             
-            descriptionTextArea.append( currentRoom.getEast() + "\n");
+            if (currentRoom.getEast() < 0)
+            {
+                descriptionTextArea.append( "You cannot go that way.  Please try again. \n");
+            }
+            else 
+            {
+                currentRoom = rooms.get( currentRoom.getEast() );
+                displayRoomInfo();
+            }
         }
         else if (command.equals("go west") || command.equals("west") || command.equals("move west") || command.equals("w"))
         {
             
-            descriptionTextArea.append( currentRoom.getWest() + "\n");
+            if (currentRoom.getWest() < 0)
+            {
+                descriptionTextArea.append( "You cannot go that way.  Please try again. \n");
+            }
+            else 
+            {
+                currentRoom = rooms.get( currentRoom.getWest() );
+                displayRoomInfo();
+            }
+        }
+        else if (command.equals("inventory") || command.equals("i"))
+        {
+            displayRoomInfo();
         }
         else
         {

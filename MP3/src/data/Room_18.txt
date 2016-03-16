@@ -1,5 +1,0 @@
-18
-20 22 19 17 20 22
-EastFStreet.jpe
-You are standing on East F Street.  
-You are standing on East F Street.  You can see the church here, and also to connecting streets to the north and east.

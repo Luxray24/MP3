@@ -1,6 +1,0 @@
-0
--1 1 4 -1 -1 1
-0
-OvalRoom.jpg
-You are standing in the Oval Room.
-You are standing in the Oval Room. An oval shaped room with gorgeous paintings on the walls.   Red drapes hang from the tall windows.  You can see the back porch and the library.
