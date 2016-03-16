@@ -310,35 +310,63 @@ public class MP3JFrame extends javax.swing.JFrame {
         }
         else if (command.startsWith("take"))
         {
-            for (int i = 0; i < objects.size(); i++)
+            if (command.equals("take all"))
             {
-                items = objects.get(i);
-                if (command.contains(items.getName()))
+                for (int i = 0; i < objects.size(); i++)
                 {
+                    items = objects.get(i);
                     playerInventory.add(items);
                     objects.remove(items);
-                    descriptionTextArea.append(items.getName() + " was added to your inventory. \n \n");
                 }
-                
-            } 
+                descriptionTextArea.append("Everything in this room was added to your inventory. \n \n");
+            }
+            else
+            {
+                for (int i = 0; i < objects.size(); i++)
+                {
+                    items = objects.get(i);
+                    if (command.contains(items.getName()))
+                    {
+                        playerInventory.add(items);
+                        objects.remove(items);
+                        descriptionTextArea.append(items.getName() + " was added to your inventory. \n \n");
+                    }
+
+                } 
+            }
         }
+        
         else if (command.startsWith("drop"))
         {
-            for (int i = 0; i < playerInventory.size(); i++)
+            if (command.equals("drop all"))
             {
-                personalInventory = playerInventory.get(i);
-                if (command.contains(personalInventory.getName()))
+                for (int i = 0; i < objects.size(); i++)
                 {
-                    playerInventory.remove(personalInventory);
-                    objects.add(personalInventory);
-                    descriptionTextArea.append(personalInventory.getName() + " was dropped from your inventory. \n \n");
-                }
-                
-            } 
+                    personalInventory = playerInventory.get(i);
+                    items = objects.get(i);
+                    playerInventory.add(items);
+                    objects.remove(items);
+                    
+                } 
+                descriptionTextArea.append("Everything was dropped from your inventory. \n \n");
+            }
+            else
+            {
+                for (int i = 0; i < playerInventory.size(); i++)
+                {
+                    personalInventory = playerInventory.get(i);
+                    if (command.contains(personalInventory.getName()))
+                    {
+                        playerInventory.remove(personalInventory);
+                        objects.add(personalInventory);
+                        descriptionTextArea.append(personalInventory.getName() + " was dropped from your inventory. \n \n");
+                    }
+
+                } 
+            }
         }
         else if (command.equals("inventory") || command.equals("i"))
         {
-            //Inventory tempInv = null;
             descriptionTextArea.append( "The objects in your inventory are: \n");
             for (int i = 0; i < playerInventory.size(); i++)
             {
