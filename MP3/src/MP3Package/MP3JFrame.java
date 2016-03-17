@@ -312,18 +312,23 @@ public class MP3JFrame extends javax.swing.JFrame {
         {
             if (command.equals("take all"))
             {
-                for (int i = 0; i < objects.size(); i++)
+                int j = 0;
+                int size = objects.size();
+                for (int i = 0; i < size; i++)
                 {
-                    items = objects.get(i);
+                    items = objects.get(j);
                     playerInventory.add(items);
                     objects.remove(items);
+                    
                 }
+                
                 descriptionTextArea.append("Everything in this room was added to your inventory. \n \n");
             }
             else
             {
                 for (int i = 0; i < objects.size(); i++)
                 {
+                    
                     items = objects.get(i);
                     if (command.contains(items.getName()))
                     {
@@ -331,6 +336,7 @@ public class MP3JFrame extends javax.swing.JFrame {
                         objects.remove(items);
                         descriptionTextArea.append(items.getName() + " was added to your inventory. \n \n");
                     }
+
 
                 } 
             }
@@ -340,15 +346,17 @@ public class MP3JFrame extends javax.swing.JFrame {
         {
             if (command.equals("drop all"))
             {
-                for (int i = 0; i < objects.size(); i++)
+                int j = 0;
+                int size = playerInventory.size();
+                for (int i = 0; i < size; i++)
                 {
-                    personalInventory = playerInventory.get(i);
-                    items = objects.get(i);
-                    playerInventory.add(items);
-                    objects.remove(items);
+                    personalInventory = playerInventory.get(j);
+                    playerInventory.remove(personalInventory);
+                    objects.add(personalInventory);
                     
                 } 
                 descriptionTextArea.append("Everything was dropped from your inventory. \n \n");
+                
             }
             else
             {
