@@ -244,6 +244,7 @@ public class MP3JFrame extends javax.swing.JFrame {
         descriptionTextArea.append(">" + command + "\n ");
         commandTextField.setText("");
         
+            
 
         if (command.equals("quit")) 
         {
@@ -251,7 +252,7 @@ public class MP3JFrame extends javax.swing.JFrame {
         } 
         else if (command.equals("score")) 
         {
-            descriptionTextArea.append("Your score is: " + totalPoints + "\n \n");
+            descriptionTextArea.append("Your score is: " + points + "\n \n");
         }
         else if (command.equals("look") || command.equals("l"))
         {
@@ -268,6 +269,8 @@ public class MP3JFrame extends javax.swing.JFrame {
                 currentRoom = rooms.get( currentRoom.getNorth() );
                 displayRoomInfo();
             }
+            
+            points += 5;
         }
         else if (command.equals("go south") || command.equals("south") || command.equals("move south") || command.equals("s"))
         {
@@ -281,6 +284,7 @@ public class MP3JFrame extends javax.swing.JFrame {
                 currentRoom = rooms.get( currentRoom.getSouth() );
                 displayRoomInfo();
             }
+            points += 5;
         }
         else if (command.equals("go east") || command.equals("east") || command.equals("move east") || command.equals("e"))
         {
@@ -294,6 +298,7 @@ public class MP3JFrame extends javax.swing.JFrame {
                 currentRoom = rooms.get( currentRoom.getEast() );
                 displayRoomInfo();
             }
+            points += 5;
         }
         else if (command.equals("go west") || command.equals("west") || command.equals("move west") || command.equals("w"))
         {
@@ -307,6 +312,7 @@ public class MP3JFrame extends javax.swing.JFrame {
                 currentRoom = rooms.get( currentRoom.getWest() );
                 displayRoomInfo();
             }
+            points += 5;
         }
         else if (command.startsWith("take"))
         {
