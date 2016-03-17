@@ -120,7 +120,7 @@ END
 // ROOM 17
 -1 -1 18 14 -1 -1
 0
-EnteranceGate.jpg
+EneranceGate.jpg
 The entryway to the grounds.
 The entryway to the grounds.  It is just a simple white gate.  It won't stand up against the British troops!
 END

@@ -30,9 +30,9 @@ class Room extends javax.swing.JFrame {
     private int currentRoom; //Current room
     private String shortDescription; //Short and long description of room
     private String longDescription;
-    private ImageIcon imageForRoom; //Image for room
+    private String imageForRoom; //Image for room
     private String space = " ";
-    private String image;
+    
 
 
     //Constructor
@@ -45,84 +45,128 @@ class Room extends javax.swing.JFrame {
         up = directionUp;
         down = directionDown;
         pointValue = points;
-        image = imageSRC;
+        imageForRoom = imageSRC;
+        setImageForRoom(imageForRoom);
         shortDescription = text;
         longDescription = textLong;
     }
 
-    public void setRoom(int currentRoom) {
+    /**
+     * Sets the current room
+     * @param currentRoom the room number
+     */
+    public void setRoom(int currentRoom) 
+    {
         this.currentRoom = currentRoom;
     }
 
-    public int getRoom() {
+    /**
+     * Gets the room number
+     * @return current room number
+     */
+    public int getRoom() 
+    {
         return currentRoom;
     }
 
-    public void setPointValue(int points) {
+    /**
+     * Sets the room points
+     * @param points points for room
+     */
+    public void setPointValue(int points) 
+    {
         this.pointValue = points;
     }
 
-    public int getPointValue() {
+    /**
+     * Gets the point value for each room
+     * @return the point value
+     */
+    public int getPointValue() 
+    {
         return pointValue;
     }
 
-    public void setImageForRoom(String image) {
-        this.imageForRoom = new ImageIcon("/images/" + image );
+    /**
+     * Sets the image for each room
+     * @param image image name
+     */
+    public void setImageForRoom(String imageForRoom) 
+    {
+        this.imageForRoom = imageForRoom;
     }
 
-    public ImageIcon getImageForRoom() {
+    /**
+     * Gets the image for room
+     * @return image file name for the room
+     */
+    public String getImageForRoom() 
+    {
         return imageForRoom;
     }
 
-    public void setShortDescription(String shortDescription) {
+    public void setShortDescription(String shortDescription) 
+    {
         this.shortDescription = shortDescription;
     }
 
-    public String getShortDescription() {
+    public String getShortDescription() 
+    {
         return shortDescription;
     }
 
-    public void setLongDescription(String longDescription) {
+    public void setLongDescription(String longDescription) 
+    {
         this.longDescription = longDescription;
     }
 
-    public String getLongDescription() {
+    public String getLongDescription() 
+    {
         return longDescription;
     }
 
-    public void setNorth(int north) {
+    public void setNorth(int north) 
+    {
         this.north = north;
     }
 
-    public int getNorth() {
+    public int getNorth() 
+    {
         return north;
     }
 
-    public void setSouth(int south) {
+    public void setSouth(int south) 
+    {
         this.south = south;
     }
 
-    public int getSouth() {
+    public int getSouth() 
+    {
         return south;
     }
 
-    public void setEast(int east) {
+    public void setEast(int east)
+    {
         this.east = east;
     }
 
-    public int getEast() {
+    public int getEast() 
+    {
         return east;
     }
 
-    public void setWest(int west) {
+    public void setWest(int west) 
+    {
         this.west = west;
     }
 
-    public int getWest() {
+    public int getWest() 
+    {
         return west;
     }
 
-    public void assignDirections(String directions) {
+    public void assignDirections(String directions) 
+    {
         String[] temp = directions.split(" ");
         int tempNorth = Integer.parseInt(temp[0]);
         int tempSouth = Integer.parseInt(temp[1]);
@@ -135,57 +179,5 @@ class Room extends javax.swing.JFrame {
         setWest(tempWest);
     }
 
-    public int getNextDirection(String choice) {
-        String temp = choice;
-        int next;
-
-        if (temp.equals("go north") || temp.equals("north") || temp.equals("move north") || temp.equals("n")) {
-            next = getNorth();
-        } else if (temp.equals("go south") || temp.equals("south") || temp.equals("move south") || temp.equals("s")) {
-            next = getSouth();
-        } else if (temp.equals("go east") || temp.equals("east") || temp.equals("move east") || temp.equals("e")) {
-            next = getEast();
-        } else if (temp.equals("go west") || temp.equals("west") || temp.equals("move west") || temp.equals("w")) {
-            next = getWest();
-        } else {
-            next = -1;
-        }
-
-        return next;
-    }
-
-    public boolean checkRoomForItem(int roomNumber) {
-        if (roomNumber == 0) {
-            return true;
-        } else if (roomNumber == 1) {
-            return true;
-        } else if (roomNumber == 4) {
-            return true;
-        } else if (roomNumber == 5) {
-            return true;
-        } else if (roomNumber == 8) {
-            return true;
-        } else if (roomNumber == 10) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean checkRoomForItemUse(int roomNumber) {
-        if (roomNumber == 15) {
-            return true;
-        } else if (roomNumber == 16) {
-            return true;
-        } else if (roomNumber == 21) {
-            return true;
-        } else if (roomNumber == 22) {
-            return true;
-        } else if (roomNumber == 23) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
 }

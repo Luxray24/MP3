@@ -15,21 +15,26 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * This is an interactive fiction game.  
+ * You are playing as Dolley Madison and you collect different items in the White House before
+ * the British burn it down.  You get points for each room you explore.
  * @author Georgia Snelling
  */
 public class MP3JFrame extends javax.swing.JFrame {
 
+    //initializing points.
     int points = 0;
-    int totalPoints = 0;
-    
-    
+        
+    //Initializing the Room list array
     ArrayList<Room> rooms = new ArrayList<Room>();
     Room currentRoom = null;
     
+    //Initializing the objects array
     ArrayList<Inventory> objects = new ArrayList<Inventory>();
     Inventory items = null;
     
+    
+    //Initializing the player inventory array
     ArrayList<Inventory> playerInventory = new ArrayList<Inventory>();
     Inventory personalInventory = null;
 
@@ -108,14 +113,15 @@ public class MP3JFrame extends javax.swing.JFrame {
             
         }
 
-        currentRoom = rooms.get( 0 );
-        imageLabel.setIcon(currentRoom.getImageForRoom());
-        displayRoomInfo();
+        currentRoom = rooms.get( 0 ); //Sets the first room
+        ImageIcon roomImage;
+        String roomImageFileName = currentRoom.getImageForRoom();
+        roomImage = new ImageIcon("C:\\Users\\animalcrackers48\\Documents\\Programming\\MP3\\MP3\\src\\images\\" + roomImageFileName );
+        imageLabel.setIcon(roomImage);
+        displayRoomInfo(); // Displays the room information
+                
         
-        
-        
-        
-        //Inventory
+        //Objects
         try {
             // open up data file stored in src/data/roomdata.txt
             // remember that the "src" folder is the root for JAR-based file resources
@@ -168,7 +174,6 @@ public class MP3JFrame extends javax.swing.JFrame {
         commandTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         descriptionTextArea = new javax.swing.JTextArea();
-        imageJPanel = new javax.swing.JPanel();
         imageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -188,45 +193,34 @@ public class MP3JFrame extends javax.swing.JFrame {
         descriptionTextArea.setWrapStyleWord(true);
         jScrollPane1.setViewportView(descriptionTextArea);
 
-        imageJPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        imageJPanel.setMaximumSize(new java.awt.Dimension(460, 300));
-        imageJPanel.setMinimumSize(new java.awt.Dimension(460, 300));
-        imageJPanel.setPreferredSize(new java.awt.Dimension(460, 300));
-
-        javax.swing.GroupLayout imageJPanelLayout = new javax.swing.GroupLayout(imageJPanel);
-        imageJPanel.setLayout(imageJPanelLayout);
-        imageJPanelLayout.setHorizontalGroup(
-            imageJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
-        );
-        imageJPanelLayout.setVerticalGroup(
-            imageJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
-        );
+        imageLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        imageLabel.setMaximumSize(new java.awt.Dimension(400, 200));
+        imageLabel.setMinimumSize(new java.awt.Dimension(400, 200));
+        imageLabel.setPreferredSize(new java.awt.Dimension(400, 200));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(52, 138, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(imageJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(167, 167, 167))
             .addGroup(layout.createSequentialGroup()
                 .addGap(265, 265, 265)
                 .addComponent(commandJLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(commandTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(52, 138, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
+                .addGap(167, 167, 167))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(imageJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(35, 35, 35)
+                .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -240,83 +234,106 @@ public class MP3JFrame extends javax.swing.JFrame {
 
     private void commandTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commandTextFieldActionPerformed
         
-        String command = commandTextField.getText().toLowerCase();
-        descriptionTextArea.append(">" + command + "\n ");
+        String command = commandTextField.getText().toLowerCase(); //Reads in command
+        descriptionTextArea.append(">" + command + "\n "); //Pritns it out in text area
         commandTextField.setText("");
         
             
-
-        if (command.equals("quit")) 
+        //Compares the command with different options, resulting in different things.
+        if (command.equals("quit"))  //Quitting the game
         {
             System.exit(1);
         } 
-        else if (command.equals("score")) 
+        else if (command.equals("score")) //Gets score and prints it out
         {
             descriptionTextArea.append("Your score is: " + points + "\n \n");
         }
-        else if (command.equals("look") || command.equals("l"))
+        else if (command.equals("look") || command.equals("l")) //Look at the current room description
         {
             displayRoomInfo();
         }
-        else if (command.equals("go north") || command.equals("north") || command.equals("move north") || command.equals("n"))
+        else if (command.equals("go north") || command.equals("north") || command.equals("move north") || command.equals("n")) //Moves the player north if possible
         {
-            if (currentRoom.getNorth() < 0)
+            //Checks if you can go north
+            if (currentRoom.getNorth() < 0) //Direction is -1 so you cannot go that way
             {
                 descriptionTextArea.append( "You cannot go that way.  Please try again. \n \n");
             }
-            else 
+            else //You can go this way and it sets the current room as the new room
             {
                 currentRoom = rooms.get( currentRoom.getNorth() );
                 displayRoomInfo();
             }
             
+            ImageIcon roomImage;
+            String roomImageFileName = currentRoom.getImageForRoom();
+            roomImage = new ImageIcon("C:\\Users\\animalcrackers48\\Documents\\Programming\\MP3\\MP3\\src\\images\\" + roomImageFileName );
+            imageLabel.setIcon(roomImage);
+            
             points += 5;
         }
-        else if (command.equals("go south") || command.equals("south") || command.equals("move south") || command.equals("s"))
+        else if (command.equals("go south") || command.equals("south") || command.equals("move south") || command.equals("s")) //Moves the player south if possible
         {
             
-            if (currentRoom.getSouth() < 0)
+            //Checks if you can go south
+            if (currentRoom.getSouth() < 0) //Direction is -1 so you cannot go that way
             {
                 descriptionTextArea.append( "You cannot go that way.  Please try again. \n \n");
-            }
-            else 
+            }  
+            else //You can go this way and it sets the current room as the new room 
             {
                 currentRoom = rooms.get( currentRoom.getSouth() );
                 displayRoomInfo();
             }
+            
+            ImageIcon roomImage;
+            String roomImageFileName = currentRoom.getImageForRoom();
+            roomImage = new ImageIcon("C:\\Users\\animalcrackers48\\Documents\\Programming\\MP3\\MP3\\src\\images\\" + roomImageFileName );
+            imageLabel.setIcon(roomImage);
+            
             points += 5;
         }
-        else if (command.equals("go east") || command.equals("east") || command.equals("move east") || command.equals("e"))
+        else if (command.equals("go east") || command.equals("east") || command.equals("move east") || command.equals("e")) //Moves the player east if possible
         {
-            
-            if (currentRoom.getEast() < 0)
+            //Checks if you can go east
+            if (currentRoom.getEast() < 0) //Direction is -1 so you cannot go that way
             {
                 descriptionTextArea.append( "You cannot go that way.  Please try again. \n \n");
             }
-            else 
+            else //You can go this way and it sets the current room as the new room 
             {
                 currentRoom = rooms.get( currentRoom.getEast() );
                 displayRoomInfo();
             }
+            
+            ImageIcon roomImage;
+            String roomImageFileName = currentRoom.getImageForRoom();
+            roomImage = new ImageIcon("C:\\Users\\animalcrackers48\\Documents\\Programming\\MP3\\MP3\\src\\images\\" + roomImageFileName );
+            imageLabel.setIcon(roomImage);
             points += 5;
         }
-        else if (command.equals("go west") || command.equals("west") || command.equals("move west") || command.equals("w"))
+        else if (command.equals("go west") || command.equals("west") || command.equals("move west") || command.equals("w")) //Moves the player west if possible
         {
-            
-            if (currentRoom.getWest() < 0)
+            //Checks if you can go west
+            if (currentRoom.getWest() < 0) //Direction is -1 so you cannot go that way
             {
                 descriptionTextArea.append( "You cannot go that way.  Please try again. \n \n");
             }
-            else 
+            else //You can go this way and it sets the current room as the new room 
             {
                 currentRoom = rooms.get( currentRoom.getWest() );
                 displayRoomInfo();
             }
+            
+            ImageIcon roomImage;
+            String roomImageFileName = currentRoom.getImageForRoom();
+            roomImage = new ImageIcon("C:\\Users\\animalcrackers48\\Documents\\Programming\\MP3\\MP3\\src\\images\\" + roomImageFileName );
+            imageLabel.setIcon(roomImage);
             points += 5;
         }
-        else if (command.startsWith("take"))
+        else if (command.startsWith("take")) //Adds item into player inventory
         {
-            if (command.equals("take all"))
+            if (command.equals("take all")) //Takes all the items
             {
                 int j = 0;
                 int size = objects.size();
@@ -330,7 +347,7 @@ public class MP3JFrame extends javax.swing.JFrame {
                 
                 descriptionTextArea.append("Everything in this room was added to your inventory. \n \n");
             }
-            else
+            else //Takes specified item
             {
                 for (int i = 0; i < objects.size(); i++)
                 {
@@ -348,9 +365,9 @@ public class MP3JFrame extends javax.swing.JFrame {
             }
         }
         
-        else if (command.startsWith("drop"))
+        else if (command.startsWith("drop")) //Drops item into the room
         {
-            if (command.equals("drop all"))
+            if (command.equals("drop all")) //Drops all the things
             {
                 int j = 0;
                 int size = playerInventory.size();
@@ -364,7 +381,7 @@ public class MP3JFrame extends javax.swing.JFrame {
                 descriptionTextArea.append("Everything was dropped from your inventory. \n \n");
                 
             }
-            else
+            else //Drops specified object
             {
                 for (int i = 0; i < playerInventory.size(); i++)
                 {
@@ -379,7 +396,7 @@ public class MP3JFrame extends javax.swing.JFrame {
                 } 
             }
         }
-        else if (command.equals("inventory") || command.equals("i"))
+        else if (command.equals("inventory") || command.equals("i")) //Prints out the inventory of the player
         {
             descriptionTextArea.append( "The objects in your inventory are: \n");
             for (int i = 0; i < playerInventory.size(); i++)
@@ -390,7 +407,7 @@ public class MP3JFrame extends javax.swing.JFrame {
             }
             descriptionTextArea.append( "\n");
         }
-        else
+        else //If what the player doesnt make sense it prints this out
         {
             descriptionTextArea.append("That isn't a command I know.  Please try again. \n \n");
         }
@@ -433,7 +450,8 @@ public class MP3JFrame extends javax.swing.JFrame {
         });
     }
     
-    private void displayRoomInfo() {
+    private void displayRoomInfo() //Prints the description of the current room
+    {
         descriptionTextArea.append( currentRoom.getLongDescription() + "\n \n" );
         
     }
@@ -447,7 +465,6 @@ public class MP3JFrame extends javax.swing.JFrame {
     private javax.swing.JLabel commandJLabel;
     private javax.swing.JTextField commandTextField;
     private javax.swing.JTextArea descriptionTextArea;
-    private javax.swing.JPanel imageJPanel;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

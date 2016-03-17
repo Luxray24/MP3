@@ -28,35 +28,75 @@ public class Inventory {
         objectPoints = points;
     }
     
-    public void setName(String name) {
+    /**
+     * Sets the name of the current object
+     * @param name of object
+     */
+    public void setName(String name) 
+    {
         this.objectName = name;
     }
 
-    public String getName() {
+    /**
+     * Gets the name of the current object
+     * @return object name
+     */
+    public String getName() 
+    {
         return objectName;
     }
     
-    public void setPointValue(int points) {
+    /**
+     * Sets the points for the object when used
+     * @param points of the object when used
+     */
+    public void setPointValue(int points) 
+    {
         this.objectPoints = points;
     }
 
-    public int getPointValue() {
+    /**
+     * Gets the amount of points when the object is used
+     * @return the object points 
+     */
+    public int getPointValue() 
+    {
         return objectPoints;
     }
     
-    public void setLocationFound(int locationFound) {
+    /**
+     * Sets the location for where the object is found
+     * @param locationFound location of where the object is found
+     */
+    public void setLocationFound(int locationFound) 
+    {
         this.foundLocation = locationFound;
     }
 
-    public int getLocationFound() {
+    /**
+     * Gets the location found
+     * @return the location found
+     */
+    public int getLocationFound() 
+    {
         return foundLocation;
     }
     
-    public void setLocationUsed(int locationUsed) {
+    /**
+     * Sets the location used
+     * @param locationUsed location of object used
+     */
+    public void setLocationUsed(int locationUsed) 
+    {
         this.usedLocation = locationUsed;
     }
 
-    public int getLocationUsed() {
+    /**
+     * Gets the location of the object used
+     * @return the used location
+     */
+    public int getLocationUsed() 
+    {
         return usedLocation;
     }
     
