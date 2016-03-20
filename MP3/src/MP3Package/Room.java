@@ -32,11 +32,10 @@ class Room extends javax.swing.JFrame {
     private String longDescription;
     private String imageForRoom; //Image for room
     private String space = " ";
-    
 
 
     //Constructor
-    Room(int directionNorth, int directionSouth, int directionEast, int directionWest, int directionUp, int directionDown, int points, String imageSRC, String text, String textLong) 
+    Room(int directionNorth, int directionSouth, int directionEast, int directionWest, int directionUp, int directionDown, int points, String imageSRC, String text, String textLong, int roomNumber) 
     {
         north = directionNorth;
         south = directionSouth;
@@ -49,6 +48,8 @@ class Room extends javax.swing.JFrame {
         setImageForRoom(imageForRoom);
         shortDescription = text;
         longDescription = textLong;
+        currentRoom = roomNumber;
+        
     }
 
     /**
@@ -105,79 +106,115 @@ class Room extends javax.swing.JFrame {
         return imageForRoom;
     }
 
+    /**
+     * Sets the short description
+     * @param shortDescription of object
+     */
     public void setShortDescription(String shortDescription) 
     {
         this.shortDescription = shortDescription;
     }
 
+    /**
+     * gets the short description
+     * @return short description
+     */
     public String getShortDescription() 
     {
         return shortDescription;
     }
 
+    /**
+     * sets long description of object
+     * @param longDescription of object
+     */
     public void setLongDescription(String longDescription) 
     {
         this.longDescription = longDescription;
     }
 
+    /**
+     * gets long description of object
+     * @return long description of object
+     */
     public String getLongDescription() 
     {
         return longDescription;
     }
 
+    /**
+     * sets north
+     * @param north number north 
+     */
     public void setNorth(int north) 
     {
         this.north = north;
     }
 
+    /**
+     * gets the room number north
+     * @return room number north
+     */
     public int getNorth() 
     {
         return north;
     }
 
+    /**
+     * sets room south
+     * @param south number south
+     */
     public void setSouth(int south) 
     {
         this.south = south;
     }
 
+    /**
+     * gets room number south
+     * @return number south
+     */
     public int getSouth() 
     {
         return south;
     }
 
+    /**
+     * sets room east
+     * @param east umber east
+     */
     public void setEast(int east)
     {
         this.east = east;
     }
 
+    /**
+     * gets room number east
+     * @return number east
+     */
     public int getEast() 
     {
         return east;
     }
 
+    /**
+     * sets room west
+     * @param west number west
+     */
     public void setWest(int west) 
     {
         this.west = west;
     }
 
+    /**
+     * gets room number west
+     * @return number west
+     */
     public int getWest() 
     {
         return west;
     }
-
-    public void assignDirections(String directions) 
-    {
-        String[] temp = directions.split(" ");
-        int tempNorth = Integer.parseInt(temp[0]);
-        int tempSouth = Integer.parseInt(temp[1]);
-        int tempEast = Integer.parseInt(temp[2]);
-        int tempWest = Integer.parseInt(temp[3]);
-
-        setNorth(tempNorth);
-        setSouth(tempSouth);
-        setEast(tempEast);
-        setWest(tempWest);
-    }
-
+       
+    // Add array list of items in room.  Starts null.  
 
 }
+

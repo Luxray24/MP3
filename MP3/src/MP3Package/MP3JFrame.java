@@ -24,7 +24,7 @@ public class MP3JFrame extends javax.swing.JFrame {
 
     //initializing points.
     int points = 0;
-        
+            
     //Initializing the Room list array
     ArrayList<Room> rooms = new ArrayList<Room>();
     Room currentRoom = null;
@@ -84,6 +84,7 @@ public class MP3JFrame extends javax.swing.JFrame {
                     break;
                 }
 
+                int roomNumber = Integer.parseInt(br.readLine());
                 String roomConnections = br.readLine();
                 // split will use the passed delimiter to split a string
                 // into multiple strings housed in an array.
@@ -101,7 +102,7 @@ public class MP3JFrame extends javax.swing.JFrame {
                         points,
                         imageSRC,
                         text,
-                        textLong);
+                        textLong, roomNumber);
                 rooms.add(newRoom);
                 String end = br.readLine();
                 System.out.println(textLong);
@@ -113,13 +114,7 @@ public class MP3JFrame extends javax.swing.JFrame {
             
         }
 
-        currentRoom = rooms.get( 0 ); //Sets the first room
-        ImageIcon roomImage;
-        String roomImageFileName = currentRoom.getImageForRoom();
-        roomImage = new ImageIcon("C:\\Users\\animalcrackers48\\Documents\\Programming\\MP3\\MP3\\src\\images\\" + roomImageFileName );
-        imageLabel.setIcon(roomImage);
-        displayRoomInfo(); // Displays the room information
-                
+                 
         
         //Objects
         try {
@@ -158,6 +153,15 @@ public class MP3JFrame extends javax.swing.JFrame {
             
         }
 
+        
+        
+        currentRoom = rooms.get( 0 ); //Sets the first room
+        ImageIcon roomImage;
+        String roomImageFileName = currentRoom.getImageForRoom();
+        roomImage = new ImageIcon("C:\\Users\\animalcrackers48\\Documents\\Programming\\MP3\\MP3\\src\\images\\" + roomImageFileName );
+        imageLabel.setIcon(roomImage);
+        displayRoomInfo(); // Displays the room information
+        
         
     }
 
@@ -248,10 +252,6 @@ public class MP3JFrame extends javax.swing.JFrame {
         {
             descriptionTextArea.append("Your score is: " + points + "\n \n");
         }
-        else if (command.equals("look") || command.equals("l")) //Look at the current room description
-        {
-            displayRoomInfo();
-        }
         else if (command.equals("go north") || command.equals("north") || command.equals("move north") || command.equals("n")) //Moves the player north if possible
         {
             //Checks if you can go north
@@ -262,6 +262,8 @@ public class MP3JFrame extends javax.swing.JFrame {
             else //You can go this way and it sets the current room as the new room
             {
                 currentRoom = rooms.get( currentRoom.getNorth() );
+                currentRoom.setRoom( currentRoom.getRoom() );
+                
                 displayRoomInfo();
             }
             
@@ -283,6 +285,8 @@ public class MP3JFrame extends javax.swing.JFrame {
             else //You can go this way and it sets the current room as the new room 
             {
                 currentRoom = rooms.get( currentRoom.getSouth() );
+                currentRoom.setRoom( currentRoom.getRoom() );
+                
                 displayRoomInfo();
             }
             
@@ -303,6 +307,9 @@ public class MP3JFrame extends javax.swing.JFrame {
             else //You can go this way and it sets the current room as the new room 
             {
                 currentRoom = rooms.get( currentRoom.getEast() );
+                currentRoom.setRoom( currentRoom.getRoom() );
+                
+                
                 displayRoomInfo();
             }
             
@@ -322,6 +329,8 @@ public class MP3JFrame extends javax.swing.JFrame {
             else //You can go this way and it sets the current room as the new room 
             {
                 currentRoom = rooms.get( currentRoom.getWest() );
+                currentRoom.setRoom( currentRoom.getRoom() );
+                
                 displayRoomInfo();
             }
             
@@ -331,18 +340,27 @@ public class MP3JFrame extends javax.swing.JFrame {
             imageLabel.setIcon(roomImage);
             points += 5;
         }
+        else if (command.equals("look") || command.equals("l")) //Look at the current room description
+        {
+            displayRoomInfo();
+            
+            
+        }
         else if (command.startsWith("take")) //Adds item into player inventory
         {
             if (command.equals("take all")) //Takes all the items
             {
                 int j = 0;
-                int size = objects.size();
-                for (int i = 0; i < size; i++)
+                //int size = objects.size();
+                for (int i = 0; i < objects.size(); i++)
                 {
-                    items = objects.get(j);
-                    playerInventory.add(items);
-                    objects.remove(items);
-                    
+                    items = objects.get(i);
+                    if (items.getLocationFound() == currentRoom.getRoom())
+                    {
+                        //items = objects.get(j);
+                        playerInventory.add(items);
+                        objects.remove(items);
+                    }
                 }
                 
                 descriptionTextArea.append("Everything in this room was added to your inventory. \n \n");
@@ -353,11 +371,15 @@ public class MP3JFrame extends javax.swing.JFrame {
                 {
                     
                     items = objects.get(i);
-                    if (command.contains(items.getName()))
+                    if (command.contains(items.getName()) && items.getLocationFound() == currentRoom.getRoom())
                     {
                         playerInventory.add(items);
                         objects.remove(items);
                         descriptionTextArea.append(items.getName() + " was added to your inventory. \n \n");
+                    }
+                    else if (command.contains(items.getName()) && items.getLocationFound() != currentRoom.getRoom())
+                    {
+                        descriptionTextArea.append("That item is not in this room. \n \n");
                     }
 
 
@@ -453,6 +475,17 @@ public class MP3JFrame extends javax.swing.JFrame {
     private void displayRoomInfo() //Prints the description of the current room
     {
         descriptionTextArea.append( currentRoom.getLongDescription() + "\n \n" );
+        
+        descriptionTextArea.append( "You see: " );
+        for (int i = 0; i < objects.size(); i++)
+        {
+            items = objects.get(i);
+            if (items.getLocationFound() == currentRoom.getRoom())
+            {
+                descriptionTextArea.append( items.getName() + "\n" );
+            }
+        }
+        descriptionTextArea.append( "\n" );    
         
     }
     
