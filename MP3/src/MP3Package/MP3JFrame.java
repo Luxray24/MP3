@@ -351,23 +351,25 @@ public class MP3JFrame extends javax.swing.JFrame {
             if (command.equals("take all")) //Takes all the items
             {
                 int j = 0;
-                //int size = objects.size();
-                for (int i = 0; i < objects.size(); i++)
+                int size = objects.size();
+                for (int i = 0; i < size; i++)
                 {
-                    items = objects.get(i);
+                    items = objects.get(j);
                     if (items.getLocationFound() == currentRoom.getRoom())
                     {
-                        //items = objects.get(j);
                         playerInventory.add(items);
                         objects.remove(items);
+                        j -= 1;
                     }
+                    j += 1;
                 }
                 
                 descriptionTextArea.append("Everything in this room was added to your inventory. \n \n");
             }
             else //Takes specified item
             {
-                for (int i = 0; i < objects.size(); i++)
+                int size = objects.size();
+                for (int i = 0; i < size; i++)
                 {
                     
                     items = objects.get(i);
@@ -398,6 +400,8 @@ public class MP3JFrame extends javax.swing.JFrame {
                     personalInventory = playerInventory.get(j);
                     playerInventory.remove(personalInventory);
                     objects.add(personalInventory);
+                    items = objects.get(objects.size()-1);
+                    items.setLocationFound(currentRoom.getRoom());
                     
                 } 
                 descriptionTextArea.append("Everything was dropped from your inventory. \n \n");
@@ -405,13 +409,16 @@ public class MP3JFrame extends javax.swing.JFrame {
             }
             else //Drops specified object
             {
-                for (int i = 0; i < playerInventory.size(); i++)
+                int size = playerInventory.size();
+                for (int i = 0; i < size; i++)
                 {
                     personalInventory = playerInventory.get(i);
                     if (command.contains(personalInventory.getName()))
                     {
                         playerInventory.remove(personalInventory);
                         objects.add(personalInventory);
+                        items = objects.get(objects.size()-1);
+                        items.setLocationFound(currentRoom.getRoom());
                         descriptionTextArea.append(personalInventory.getName() + " was dropped from your inventory. \n \n");
                     }
 
